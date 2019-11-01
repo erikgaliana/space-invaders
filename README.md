@@ -42,6 +42,7 @@ Classes and methods definition.
 ```
 Game(){
         this.canvas;
+        this.life;
 }
 
 Game.prototype.startLoop(){
@@ -50,14 +51,7 @@ Game.prototype.startLoop(){
 Game.prototype.checkCollisions{
 }
 
-Game.prototype.CheckIfFullLine{
-}
 
-Game.prototype.updateLevel{
-}
-
-Game.prototype.checkOverFlow = function(){
-}
 
 
 Game.prototype.clearCanvas = function(){
@@ -119,8 +113,7 @@ player.prototype.setDirection(){
 player.prototype.goDown(){
 }
 
-player.prototype.fire(){
-}
+
 
 ```
 ### projectiles.js
@@ -140,11 +133,10 @@ player.prototype.draw{
 player.prototype.setDirection(){
 }
 
-player.prototype.move(){
+player.prototype.goUP(){
 }
 
-player.prototype.fire(){
-}
+
 
 ```
 
