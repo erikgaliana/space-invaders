@@ -184,9 +184,22 @@ Definition of the different states and their transition (transition functions)
 Task definition in order of priority
 - Main - buildDom
 - Main - buildSplashScreen
+- Main - removeSplashScreen
+- Main - createGameScreen
+- Main - removeGameScreen
 - Main - addEventListener
-- Main - buildGameScreen
-- Main - buildGameOverScreen
+- Main - startGame
+- Main - startLoop
+- player - create
+- player - setDirection
+- player - handleScreenCollision
+- player - removeLife
+- player - draw
+- enemies - create
+- enemies - goDown
+- projectiles - draw
+- projectiles - updatePosition
+- projectiles - isInsideScreen
 - Game - buildCanvas
 - Game - clearCanvas
 - Game - updateCanvas
@@ -194,13 +207,7 @@ Task definition in order of priority
 - Game - setGameOver
 - Game - collision
 - Game - addEventListener
-- enemies - create 
-- enemies - goDown
 
-- Game - checkGameover
-- movingSquare - setDirection
-- movingSquare - Rush
-- movingSquare - SelectRandomSize
 
 ## Links
 
