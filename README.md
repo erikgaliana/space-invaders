@@ -29,6 +29,10 @@ Game Over / Win screen.
 
 ## Backlog
 
+  - More rows of aliens.
+  - Aliens can shot back.
+  - Ad barriers.
+
 
 ## Data structure
 Classes and methods definition.
@@ -178,7 +182,25 @@ Definition of the different states and their transition (transition functions)
 
 ## Task
 Task definition in order of priority
+- Main - buildDom
+- Main - buildSplashScreen
+- Main - addEventListener
+- Main - buildGameScreen
+- Main - buildGameOverScreen
+- Game - buildCanvas
+- Game - clearCanvas
+- Game - updateCanvas
+- Game - drawCanvas
+- Game - setGameOver
+- Game - collision
+- Game - addEventListener
+- enemies - create 
+- enemies - goDown
 
+- Game - checkGameover
+- movingSquare - setDirection
+- movingSquare - Rush
+- movingSquare - SelectRandomSize
 
 ## Links
 
