@@ -14,6 +14,19 @@ If Aliens reach the bottom, the alien invasion is declared successful and the ga
 ## MVP (DOM - CANVAS)
 MVP definition, deliverables.
 
+    Start screen
+  
+    Game screen consisting of : 
+        -	Row of 4 descending Aliens
+        -	1 Laser canon moving left and right.
+        -	Laser cannon fires “laser projectiles” to Aliens.
+        -	Laser projectiles destroy aliens if they collide.
+        -	Game is win if player destroys all aliens.
+        -	Game Is lost if Aliens reach bottom.
+
+    Game over / Win screen.
+
+
 
 ## Backlog
 
