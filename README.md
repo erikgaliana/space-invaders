@@ -188,25 +188,31 @@ Task definition in order of priority
 - Main - createGameScreen
 - Main - removeGameScreen
 - Main - addEventListener
+- Game - buildCanvas
 - Main - startGame
 - Main - startLoop
 - player - create
 - player - setDirection
 - player - handleScreenCollision
-- player - removeLife
+- game - removeLife
 - player - draw
 - enemies - create
 - enemies - goDown
-- projectiles - draw
+- enemies - draw
+
 - projectiles - updatePosition
 - projectiles - isInsideScreen
-- Game - buildCanvas
+- projectiles - draw
+- Game - drawCanvas
 - Game - clearCanvas
 - Game - updateCanvas
-- Game - drawCanvas
+- Game - alienlanded
+- Game - collisionprojecrtile
+
 - Game - setGameOver
-- Game - collision
-- Game - addEventListener
+- game - sertGamewin
+
+- Game - addEventListenerkeydown
 
 
 ## Links
