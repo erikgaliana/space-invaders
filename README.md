@@ -152,7 +152,7 @@ player.prototype.fire(){
 Definition of the different states and their transition (transition functions)
 
 - splashScreen
-- ¿gameScreen?
+- gameScreen
 - gameoverScreen
 - winScreen
 
