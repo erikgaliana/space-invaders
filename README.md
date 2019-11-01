@@ -33,32 +33,147 @@ Game Over / Win screen.
 ## Data structure
 Classes and methods definition.
 
-main.js
 
-  buildSplashScreen(){
-  }
+### game.js
+```
+Game(){
+        this.canvas;
+}
 
-  buildGameScreen(){
-  }
+Game.prototype.startLoop(){
+}
 
-  buildGameOverScreen(){
-  }
-  
-  
-game.js
-player.js
-enemies.js
-projectiles.js
+Game.prototype.checkCollisions{
+}
+
+Game.prototype.CheckIfFullLine{
+}
+
+Game.prototype.updateLevel{
+}
+
+Game.prototype.checkOverFlow = function(){
+}
 
 
+Game.prototype.clearCanvas = function(){
+}
+
+Game.prototype.updateCanvas = function(){
+}
+
+Game.prototype.drawCanvas = function(){ 
+}
+
+Game.prototype.setGameOver = function(){
+}
+```
+
+### player.js
+```
+constructplayer(){
+  this.x;
+  this.y;
+  this.size;
+  this.direction;
+  this.speed; 
+  this.color;
+}
+
+player.prototype.draw{
+}
+
+player.prototype.setDirection(){
+}
+
+player.prototype.move(){
+}
+
+player.prototype.fire(){
+}
+
+```
+
+
+### enemies.js
+```
+constructenemies(){
+  this.x;
+  this.y;
+  this.size;
+  this.direction;
+  this.speed; 
+  this.color;
+}
+
+player.prototype.draw{
+}
+
+player.prototype.setDirection(){
+}
+
+player.prototype.goDown(){
+}
+
+player.prototype.fire(){
+}
+
+```
+### projectiles.js
+```
+constructplayer(){
+  this.x;
+  this.y;
+  this.size;
+  this.direction;
+  this.speed; 
+  this.color;
+}
+
+player.prototype.draw{
+}
+
+player.prototype.setDirection(){
+}
+
+player.prototype.move(){
+}
+
+player.prototype.fire(){
+}
+
+```
 
 ## States y States Transitions
 Definition of the different states and their transition (transition functions)
 
 - splashScreen
-- gameScreen
+- ¿gameScreen?
 - gameoverScreen
 - winScreen
+
+## States y States Transitions
+```
+- splashScreen()
+  - buildSplash()
+  - addEventListener(startGame)
+  
+  
+- starGame()
+  - create new Game()
+  - game.start()
+  
+  
+- gameOver()
+  - buildGameOver()
+  - addEventListener(startGame) 
+
+
+- gameWin()
+  - buildGameWin()
+  - addEventListener(startGame) 
+  
+```
 
 
 ## Task
