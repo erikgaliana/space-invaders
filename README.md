@@ -17,7 +17,7 @@ MVP definition, deliverables.
 Splash Screen
 
 Game screen consisting of : 
-  -	Row of 4 descending Aliens
+  -	1 Row of 4 descending Aliens
   -	1 Laser canon moving left and right.
   -	Laser cannon fires “laser projectiles” to Aliens.
   -	Laser projectiles destroy aliens if they collide.
@@ -32,6 +32,15 @@ Game Over / Win screen.
 
 ## Data structure
 Classes and methods definition.
+
+main.js
+  
+  
+game.js
+player.js
+enemies.js
+projectiles.js
+
 
 
 ## States y States Transitions
