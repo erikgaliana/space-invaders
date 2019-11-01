@@ -2,8 +2,14 @@
 
 
 ## Description
-Brief description of the project
 
+Space invaders project consists in a javascript version of 80's famous ZX Spectrum's game. 
+
+Game screen displays a laser cannon which the player controls by moving it horizontally across the bottom of the screen and firing at descending aliens. The aim is to defeat a row of aliens while they advance toward the bottom of the screen. 
+
+The player defeats an alien and earns points by shooting it with the laser cannon. Defeating all the aliens on-screen brings  to win the game.
+
+If Aliens reach the bottom, the alien invasion is declared successful and the game ends. 
 
 ## MVP (DOM - CANVAS)
 MVP definition, deliverables.
