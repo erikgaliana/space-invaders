@@ -211,7 +211,8 @@ Task definition in order of priority
 
 
 ### Trello
-[Link url](https://trello.com)
+[Link url]
+(https://trello.com/invite/b/HnJtc4qB/77ab441fd9b1ea691dfad8780b546c3b/space-invaders-project)
 
 
 ### Git
