@@ -34,6 +34,15 @@ Game Over / Win screen.
 Classes and methods definition.
 
 main.js
+
+  buildSplashScreen(){
+  }
+
+  buildGameScreen(){
+  }
+
+  buildGameOverScreen(){
+  }
   
   
 game.js
