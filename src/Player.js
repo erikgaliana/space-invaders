@@ -2,9 +2,9 @@ function Player(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
 
-  this.size = 100;
+  this.size = 70;
   this.x = canvas.width / 2;
-  this.y = 200;
+  this.y = 720;
 }
 
 Player.prototype.draw = function() {

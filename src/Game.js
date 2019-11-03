@@ -20,6 +20,8 @@ Game.prototype.start = function() {
   this.canvas.setAttribute('width', this.containerWidth);
   this.canvas.setAttribute('height', this.containerHeight);
 
+  
+
   // Create new player
   this.player = new Player(this.canvas);
 
@@ -35,9 +37,11 @@ Game.prototype.startLoop = function() {
     console.log('in loop');
 
     this.player.draw();
+    
+    //if gameover then stop loop
     if (!this.gameIsOver) {
       window.requestAnimationFrame(loop)
-   }
+    }
   
    // window.requestAnimationFrame(loop);
   }.bind(this);
