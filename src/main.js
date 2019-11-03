@@ -8,10 +8,11 @@ function buildDom(htmlString) {
 function main() {
   var splashScreen;
 
+  // -- splash screen
   function createSplashScreen() {
     splashScreen = buildDom(`
      <main>
-      <h1>Game Title</h1>
+      <h1>Space Invaders project</h1>
       <button>Start Game</button>
      </main>
     `);
@@ -19,15 +20,16 @@ function main() {
     document.body.appendChild(splashScreen);
 
     var startButton = splashScreen.querySelector('button');
-    startButton.addEventListener('click', function() {
-      startGame();
-    });
+      startButton.addEventListener('click', function() {
+          startGame();
+      });
   }
 
   function removeSplashScreen() {
     splashScreen.remove();
   }
-
+  
+  // -- game screen
   function createGameScreen() {
     var gameScreen = buildDom(`
       <main class="game">
@@ -42,6 +44,8 @@ function main() {
 
     return gameScreen;
   }
+  
+  // -- Setting the game state 
 
   function startGame() {
     removeSplashScreen();
@@ -52,6 +56,7 @@ function main() {
     game.start();
   }
 
+  // -- initialize Splash screen on initial start
   createSplashScreen();
 }
 
