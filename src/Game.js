@@ -1,7 +1,8 @@
 function Game() {
   this.canvas = null;
   this.ctx = null;
-  this.enemies = [];
+  this.alien1 = null;
+  //this.enemies = [];
   this.player = null;
   this.gameIsOver = false;
   this.gameScreen = null;
@@ -24,6 +25,9 @@ Game.prototype.start = function() {
 
   // Create new player
   this.player = new Player(this.canvas,3);
+  // create new enemy
+  this.alien1 = new Enemy(this.canvas, 100, 1);
+  
 
   // Add event listener for keydown movements
   this.handleKeyDown = function(event) {
@@ -64,6 +68,7 @@ Game.prototype.startLoop = function() {
     // 3. Check if player is going off the screen
          this.player.handleScreenCollision();
     // 4. Move existing enemies
+          this.alien1.updatePosition();
 
     // 5. Check if any enemy is going of the screen
 
@@ -75,6 +80,7 @@ Game.prototype.startLoop = function() {
     // Draw the player
     this.player.draw();
     // Draw the enemies
+    this.alien1.draw();
 
 // 4. TERMINATE LOOP IF GAME IS OVER
     
