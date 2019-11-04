@@ -7,6 +7,7 @@ function Game() {
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
+ 
 }
 
 Game.prototype.start = function() {
@@ -20,16 +21,18 @@ Game.prototype.start = function() {
   this.containerHeight = this.canvasContainer.offsetHeight;
   this.canvas.setAttribute('width', this.containerWidth);
   this.canvas.setAttribute('height', this.containerHeight);
-
+   
+  
   
 
   // Create new player
   this.player = new Player(this.canvas,3);
-  // create new enemy
- // this.alien1 = new Enemy(this.canvas, 100, 1);
-    for (var i=0; i<4; i++){
-      var newEnemy = new Enemy(this.canvas, 100*i, 100, 1);
+  
+    
+    for (var i=0; i<5; i++){
+      var newEnemy = new Enemy(this.canvas, 75*i, 100, 1);
       this.enemies.push(newEnemy);
+      
     }
 
   // Add event listener for keydown movements
@@ -56,10 +59,10 @@ Game.prototype.start = function() {
   this.startLoop();
 };
 
+var that = this;
 Game.prototype.startLoop = function() {
   var loop = function() {
     console.log('in loop');
-
     // 1. UPDATE THE STATE OF PLAYER AND ENEMIES
   
     // 0. Our player was already created - via `game.start()`
@@ -71,10 +74,9 @@ Game.prototype.startLoop = function() {
     // 3. Check if player is going off the screen
          this.player.handleScreenCollision();
     // 4. Move existing enemies
-         // this.alien1.updatePosition();
-         this.enemies.forEach(function(enemy) {
-          enemy.updatePosition();
-        });
+    // this.alien1.updatePosition();
+
+          this.checkEnemiesScreenCollision()
 
     // 5. Check if any enemy is going of the screen
 
@@ -105,3 +107,29 @@ Game.prototype.startLoop = function() {
 
   window.requestAnimationFrame(loop);
 };
+
+Game.prototype.checkEnemiesScreenCollision = function(){
+  var hasCollided = false;
+  this.enemies.forEach(function(enemy) {
+      enemy.x = enemy.x + enemy.direction * enemy.speed;
+        var screenLeft = 0;
+        var screenRight = 600;
+    
+        if ((enemy.x+enemy.size) > screenRight || enemy.x < screenLeft) {
+              hasCollided = true;
+      
+        }
+    });
+
+    // now if coliddes we change directrion and move down
+  if (hasCollided){
+
+    this.enemies.forEach(function(enemy){
+      enemy.direction*=-1;
+      enemy.y = enemy.y+30;
+      
+      
+      });
+  }
+}
+
