@@ -3,7 +3,9 @@ function Game() {
   this.ctx = null;
   this.alien1 = null;
   this.enemies = [];
+  this.projectilesarr =[];
   this.player = null;
+  this.projectile = null;
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
@@ -28,7 +30,7 @@ Game.prototype.start = function() {
   // Create new player
   this.player = new Player(this.canvas,3);
   
-    
+  // creates enemies
     for (var i=0; i<5; i++){
       var newEnemy = new Enemy(this.canvas, 75*i, 100, 1);
       this.enemies.push(newEnemy);
@@ -46,6 +48,15 @@ Game.prototype.start = function() {
       //console.log('RIGHT');
       this.player.setDirection('Right');
     }
+    if (event.which === 32) {
+      console.log("fire!!!");
+      if( this.projectile===null) {
+        console.log('createsprojecrtile');
+        this.projectile= new Projectile(this.canvas,(this.player.x+(this.player.size/2)),this.player.y); 
+        console.log(this.projectile);
+      }
+      
+    }
   };
 
   // Add event listener for moving the player
@@ -59,10 +70,11 @@ Game.prototype.start = function() {
   this.startLoop();
 };
 
-var that = this;
+
 Game.prototype.startLoop = function() {
   var loop = function() {
     console.log('in loop');
+    
     // 1. UPDATE THE STATE OF PLAYER AND ENEMIES
   
     // 0. Our player was already created - via `game.start()`
@@ -72,22 +84,36 @@ Game.prototype.startLoop = function() {
     // 2. Check if player had hit any enemy (check all enemies)
 
     // 3. Check if player is going off the screen
+
          this.player.handleScreenCollision();
     // 4. Move existing enemies
-    // this.alien1.updatePosition();
+        
 
           this.checkEnemiesScreenCollision()
+    // 4.1 move existing lasers
 
-    // 5. Check if any enemy is going of the screen
 
+
+    // 5. Check if any projectile is going of the screen
+    if ( this.projectile!=null) {   
+              if ((this.projectile.y + (this.projectile.size / 2)) < 0 ) { this.projectile=null;}
+        }
 
 // 2. CLEAR THE CANVAS
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
+    console.log(this.projectile);
+    if ( this.projectile!=null) {
+        console.log(this.projectile);
+        console.log("update psoition");
+        this.projectile.updatePosition ();
+        this.projectile.draw();
+         
+    };
 // 3. UPDATE THE CANVAS
     // Draw the player
     this.player.draw();
-    // Draw the enemies
+    
     
     //this.alien1.draw();
     this.enemies.forEach(function(enemy) {
