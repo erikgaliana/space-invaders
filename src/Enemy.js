@@ -1,11 +1,11 @@
 'use strict';
 
-function Enemy(canvas,y, speed) {
+function Enemy(canvas,x,y, speed) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
   this.size = 45;
-  this.x = (canvas.width/2) + this.size;
-  this.y = y;
+  this.x =  x;//(canvas.width/2) + this.size;
+  this.y = 40+y;
   this.speed = speed;
 }
 
