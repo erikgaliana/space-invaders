@@ -32,7 +32,7 @@ Game.prototype.start = function() {
   
   // creates enemies
     for (var i=0; i<5; i++){
-      var newEnemy = new Enemy(this.canvas, 75*i, 100, 1);
+      var newEnemy = new Enemy(this.canvas, 75*i, 100, 1,1);
       this.enemies.push(newEnemy);
       
     }
@@ -51,9 +51,9 @@ Game.prototype.start = function() {
     if (event.which === 32) {
       console.log("fire!!!");
       if( this.projectile===null) {
-        console.log('createsprojecrtile');
+       // console.log('createsprojecrtile');
         this.projectile= new Projectile(this.canvas,(this.player.x+(this.player.size/2)),this.player.y); 
-        console.log(this.projectile);
+       // console.log(this.projectile);
       }
       
     }
@@ -90,11 +90,14 @@ Game.prototype.startLoop = function() {
         
 
           this.checkEnemiesScreenCollision()
-    // 4.1 move existing lasers
+    // 5 check if collions between proyectiles and enemies.canvas-container
+    // if ( this.projectile!=null) { 
+        
+    //       this.checkProjectileCollisions();
+    //     }
 
 
-
-    // 5. Check if any projectile is going of the screen
+    // 6. Check if any projectile is going of the screen
     if ( this.projectile!=null) {   
               if ((this.projectile.y + (this.projectile.size / 2)) < 0 ) { this.projectile=null;}
         }
@@ -102,10 +105,10 @@ Game.prototype.startLoop = function() {
 // 2. CLEAR THE CANVAS
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    console.log(this.projectile);
+    // draw the prjectiles
     if ( this.projectile!=null) {
-        console.log(this.projectile);
-        console.log("update psoition");
+       // console.log(this.projectile);
+       // console.log("update psoition");
         this.projectile.updatePosition ();
         this.projectile.draw();
          
@@ -113,12 +116,22 @@ Game.prototype.startLoop = function() {
 // 3. UPDATE THE CANVAS
     // Draw the player
     this.player.draw();
+    // Draw points and lives ;
+   // this.context.fillText('Lifes : ' ,  100, 40);
+   // this.context.fillText('points : ', 100, 60);
     
+
+   if ( this.projectile!=null) { 
+        
+    this.checkProjectileCollisions();
+  }
     
     //this.alien1.draw();
     this.enemies.forEach(function(enemy) {
-      enemy.draw();
+      //console.log(enemy.live);
+      if(enemy.live===1) {enemy.draw();}
     });
+    
 
 // 4. TERMINATE LOOP IF GAME IS OVER
     
@@ -134,10 +147,17 @@ Game.prototype.startLoop = function() {
   window.requestAnimationFrame(loop);
 };
 
+
+
+
+
+
 Game.prototype.checkEnemiesScreenCollision = function(){
   var hasCollided = false;
   this.enemies.forEach(function(enemy) {
-      enemy.x = enemy.x + enemy.direction * enemy.speed;
+    // only check if it's alive
+      if ( enemy.live===1){
+        enemy.x = enemy.x + enemy.direction * enemy.speed;
         var screenLeft = 0;
         var screenRight = 600;
     
@@ -145,6 +165,7 @@ Game.prototype.checkEnemiesScreenCollision = function(){
               hasCollided = true;
       
         }
+      }
     });
 
     // now if coliddes we change directrion and move down
@@ -158,4 +179,35 @@ Game.prototype.checkEnemiesScreenCollision = function(){
       });
   }
 }
+
+Game.prototype.checkProjectileCollisions = function() {
+  
+  this.enemies.forEach( function(enemy) {
+    if(enemy.live===1){
+      // We will implement didCollide() in the next step
+      if ( this.projectile.didCollide(enemy) ) {
+
+          //this.player.removeLife();
+          //console.log('lives', this.player.lives);
+      
+          //Move the enemy off screen to the left
+          this.projectile.y = 0 - this.projectile.size;
+
+          enemy.live = 0;
+          //enemy=null;
+
+          /*
+          if (this.player.lives === 0) {
+          this.gameOver();
+          }*/
+          console.log("enemy hit");
+
+          //this.projectile=null;
+      }
+    }
+  }, this);
+  // We have to pass `this` value as the second argument
+  // as array method callbacks have a default `this` of undefined.
+};
+
 

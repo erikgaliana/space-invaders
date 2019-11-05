@@ -15,7 +15,7 @@ function Player(canvas,lives) {
 
 Player.prototype.setDirection = function(direction) {
   // +1 right  -1 left
-  console.log("direction"+direction)
+  //console.log("direction"+direction)
   if (direction === 'Left') this.direction = -1;
   else if (direction === 'Right') this.direction = 1;
 };

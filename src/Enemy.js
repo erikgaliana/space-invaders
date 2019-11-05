@@ -1,6 +1,6 @@
 'use strict';
 
-function Enemy(canvas,x,y, speed) {
+function Enemy(canvas,x,y, speed,lives) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
   this.size = 45;
@@ -8,6 +8,7 @@ function Enemy(canvas,x,y, speed) {
   this.y = 40+y;
   this.speed = speed;
   this.direction = 1;
+  this.live=lives;
 }
 
 

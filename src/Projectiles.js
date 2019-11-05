@@ -8,14 +8,14 @@ function Projectile(canvas,x,y) {
     this.size = 10;
     this.x =  x;//(canvas.width/2) + this.size;
     this.y = 10+y;
-    this.speed = 5;
+    this.speed = 3;
     this.direction = 1;
   }
 
 // draw()
 
 Projectile.prototype.draw = function() {
-    console.log('draw func');
+    //console.log('draw func');
     this.ctx.fillStyle = 'white';
     // fillRect(x, y, width, height)
     this.ctx.fillRect(
@@ -32,9 +32,44 @@ Projectile.prototype.updatePosition = function() {
     this.y = this.y - this.speed;
   };
 
-// isInsideScreen()
 
-Projectile.prototype.isInsideScreen = function() {
-    // if x plus half of its size is smaller then 0 return
-    return this.y + this.size / 2 > 0;
+Projectile.prototype.didCollide = function(enemy) {
+    var projectileLeft = this.x;
+    var projectileRight = this.x + this.size;
+    var projectileTop = this.y;
+    var projectileBottom = this.y + this.size;
+
+  
+    var enemyLeft = enemy.x;
+    var enemyRight = enemy.x + enemy.size;
+    var enemyTop = enemy.y;
+    var enemyBottom = enemy.y + enemy.size;
+    
+    if( !enemy) console.log(enemy);
+      //  if( this.y<enemy.y){ console.log("enemigo rebasado");};
+  
+    // Check if the enemy intersects any of the player's sides
+    var crossLeft = enemyLeft <= projectileRight && enemyLeft >= projectileLeft;
+    //if(crossLeft) console.log ("crossleft");
+      
+    var crossRight = enemyRight >= projectileLeft && enemyRight <= projectileRight;
+    //if(crossRight) console.log ("crossRight");
+
+    var crossBottom = enemyBottom >= projectileTop && enemyBottom <= projectileBottom;
+    //if(crossBottom) console.log ("crossBottom");
+
+    var crossTop = enemyTop <= projectileBottom && enemyTop >= projectileTop;
+    //if(crossTop) console.log ("ccrossTop");
+
+    var inside=( (projectileBottom<= enemyBottom) && (projectileTop>=enemyTop )) && (( projectileLeft>=enemyLeft)&&(projectileRight<= enemyRight));
+
+    if (
+        inside || 
+        ( ( crossLeft || crossRight) && (crossTop || crossBottom) )
+      ) {
+      return true;
+    }
+
+
+    return false;
   };
