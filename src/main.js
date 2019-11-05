@@ -47,6 +47,7 @@ function main() {
     gameScreen = buildDom(`
       <main class="game">
       <header>
+      
         <div class="lives">
           <span class="label">Lives:</span>
           <span class="value"></span>

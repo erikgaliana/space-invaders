@@ -6,6 +6,7 @@ function Game() {
   this.projectilesarr =[];
   this.player = null;
   this.projectile = null;
+  this.Alienprojectile = null;
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
@@ -31,8 +32,6 @@ Game.prototype.start = function() {
   this.canvas.setAttribute('width', this.containerWidth);
   this.canvas.setAttribute('height', this.containerHeight);
    
-  
-  
 
   // Create new player
   this.player = new Player(this.canvas,3);
@@ -43,6 +42,14 @@ Game.prototype.start = function() {
       this.enemies.push(newEnemy);
       
     }
+
+    /*if ( this.Alienprojectile===null) {  
+      var randomalienindex = Math.floor(Math.random()*this.enemies.length);
+       
+      this.Alienprojectile= new Projectile(this.canvas,this.enemies[randomalienindex].x,this.enemies[randomalienindex].y,-5);
+      
+    }*/
+
 
   // Add event listener for keydown movements
   this.handleKeyDown = function(event) {
@@ -56,10 +63,10 @@ Game.prototype.start = function() {
       this.player.setDirection('Right');
     }
     if (event.which === 32) {
-      console.log("fire!!!");
+      //console.log("fire!!!");
       if( this.projectile===null) {
        // console.log('createsprojecrtile');
-        this.projectile= new Projectile(this.canvas,(this.player.x+(this.player.size/2)),this.player.y,5); 
+        this.projectile= new Projectile(this.canvas,(this.player.x+(this.player.size/2)),this.player.y,3); 
        // console.log(this.projectile);
       }
       
@@ -97,12 +104,16 @@ Game.prototype.startLoop = function() {
     // 4. Move existing enemies
         
 
-          this.checkEnemiesScreenCollision()
-    // 5 check if collions between proyectiles and enemies.canvas-container
-    // if ( this.projectile!=null) { 
-        
-    //       this.checkProjectileCollisions();
-    //     }
+          this.checkEnemiesScreenCollision();
+    
+    
+    // alien shoots back
+
+          this.Alienshootsback();
+
+
+    // 5 check if collions between  alienproyectiles and player
+    
 
 
     // 6. Check if any projectile is going of the screen
@@ -110,8 +121,14 @@ Game.prototype.startLoop = function() {
               if ((this.projectile.y + (this.projectile.size / 2)) < 0 ) { this.projectile=null;}
         }
 
+        
+    if ( this.Alienprojectile!=null) {   
+          if ((this.Alienprojectile.y + (this.Alienprojectile.size / 2)) > 800 ) { this.Alienprojectile=null;}
+      }
+
 
     // 7. check if Aliens landed
+    
     this.Alienlanded();
 
 // 2. CLEAR THE CANVAS
@@ -119,21 +136,37 @@ Game.prototype.startLoop = function() {
 
     // draw the prjectiles
     if ( this.projectile!=null) {
-       // console.log(this.projectile);
-       // console.log("update psoition");
+       
         this.projectile.updatePosition ();
         this.projectile.draw();
          
-    };
+      };
+
+    if ( this.Alienprojectile!=null) {
+     
+       this.Alienprojectile.updatePosition ();
+       this.Alienprojectile.draw();
+        
+      };
+
 // 3. UPDATE THE CANVAS
     // Draw the player
+      
+    
     this.player.draw();
     
 
-   if ( this.projectile!=null) { 
+    if ( this.projectile!=null) { 
         
-    this.checkProjectileCollisions();
-  }
+      this.checkProjectileCollisions();
+    }
+
+    if ( this.Alienprojectile!=null) { 
+        
+      this.checkAlienProjectileCollisions();
+    }
+
+  
    // check if pleyer wins
 
    this.Playerwins();
@@ -145,6 +178,12 @@ Game.prototype.startLoop = function() {
       if(enemy.live===1) {enemy.draw();}
     });
     
+    // draw scores 
+    this.ctx.fillStyle = "orange";
+    this.ctx.font = "30px Arial";
+   
+    this.ctx.fillText("Lives : "+this.player.lives, 50, 50);
+    this.ctx.fillText("Score : "+this.score, 350, 50);
 
 // 4. TERMINATE LOOP IF GAME IS OVER
     
@@ -199,6 +238,7 @@ Game.prototype.checkEnemiesScreenCollision = function(){
 
 Game.prototype.checkProjectileCollisions = function() {
   
+
   this.enemies.forEach( function(enemy) {
     if(enemy.live===1){
       // We will implement didCollide() in the next step
@@ -208,11 +248,11 @@ Game.prototype.checkProjectileCollisions = function() {
           //console.log('lives', this.player.lives);
       
           //Move the enemy off screen to the left
-          this.projectile.y = 0 - this.projectile.size;
+          this.projectile.y =  -100;//0 - this.projectile.size;
 
           enemy.live = 0;
           
-          this.score += 25;
+          this.score = this.score + (25*this.player.lives)+ (800-enemy.y);
 
           /*
           if (this.player.lives === 0) {
@@ -228,6 +268,33 @@ Game.prototype.checkProjectileCollisions = function() {
   // We have to pass `this` value as the second argument
   // as array method callbacks have a default `this` of undefined.
 };
+
+
+Game.prototype.checkAlienProjectileCollisions = function() {
+  
+      // We will implement didCollide() in the next step
+
+      if ( this.Alienprojectile.didCollide(this.player) ) {
+
+          this.player.removeLife();
+          console.log('lives', this.player.lives);
+      
+          //Move the enemy off screen to the left
+          this.Alienprojectile.y = 1000;  //780 + this.Alienprojectile.size;
+
+      if (this.player.lives === 0) {
+          this.gameOver();
+          
+          console.log("player hit");
+          
+        }
+      
+    
+      }
+}
+
+
+
 
 // aliens landing
 
@@ -250,25 +317,36 @@ Game.prototype.Playerwins = function () {
 
   this.enemies.forEach(function(enemy) {
       
-   victory=victory+enemy.live;
+    victory=victory+enemy.live;
   
-  });
+    });
 
-  if (victory===0) { 
-    this.playervictory= true;
-    this.gameOver();
+    if (victory===0) { 
+        this.playervictory= true;
+        this.gameOver();
     
-  }
-  
-
+      }
 }
 
 
+// alien shoots back
+  
+  Game.prototype.Alienshootsback = function () {
+
+    if ( this.Alienprojectile===null) {  
+      
+      var randomalienindex = Math.floor(Math.random()*this.enemies.length);
+
+      if (this.enemies[randomalienindex].live===1 ) {
+        this.Alienprojectile= new Projectile(this.canvas,this.enemies[randomalienindex].x+22,this.enemies[randomalienindex].y+45,-3);
+      }
+    }
+  }
 
 // gameOver()
 
 Game.prototype.updateGameStats = function() {
-  //this.score += 1;
+  
   this.livesElement.innerHTML = this.player.lives;
   this.scoreElement.innerHTML = this.score;
 };
