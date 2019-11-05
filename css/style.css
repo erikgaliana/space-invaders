@@ -14,6 +14,10 @@ html, body {
   width: 100%;
 }
 
+.lives { margin-right: 50px;}
+
+.score { margin-right: 50px;}
+
 
 .canvas-container {
   
