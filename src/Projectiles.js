@@ -2,13 +2,13 @@
 'use strict';
 
 
-function Projectile(canvas,x,y) {
+function Projectile(canvas,x,y,speed) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.size = 10;
     this.x =  x;//(canvas.width/2) + this.size;
-    this.y = 10+y;
-    this.speed = 3;
+    this.y = y;
+    this.speed = speed;
     this.direction = 1;
   }
 

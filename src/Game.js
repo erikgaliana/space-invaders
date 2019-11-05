@@ -1,7 +1,7 @@
 function Game() {
   this.canvas = null;
   this.ctx = null;
-  this.alien1 = null;
+  this.playervictory = false;
   this.enemies = [];
   this.projectilesarr =[];
   this.player = null;
@@ -22,6 +22,9 @@ Game.prototype.start = function() {
   this.livesElement = this.gameScreen.querySelector('.lives .value');
   this.scoreElement = this.gameScreen.querySelector('.score .value');
 
+  //set if plyer wins
+  //this.playervictory = false;
+
   // Set the canvas to be same as the viewport size
   this.containerWidth = this.canvasContainer.offsetWidth;
   this.containerHeight = this.canvasContainer.offsetHeight;
@@ -36,7 +39,7 @@ Game.prototype.start = function() {
   
   // creates enemies
     for (var i=0; i<5; i++){
-      var newEnemy = new Enemy(this.canvas, 75*i, 600, 1,1);
+      var newEnemy = new Enemy(this.canvas, 75*i, 100, 1,1);
       this.enemies.push(newEnemy);
       
     }
@@ -56,7 +59,7 @@ Game.prototype.start = function() {
       console.log("fire!!!");
       if( this.projectile===null) {
        // console.log('createsprojecrtile');
-        this.projectile= new Projectile(this.canvas,(this.player.x+(this.player.size/2)),this.player.y); 
+        this.projectile= new Projectile(this.canvas,(this.player.x+(this.player.size/2)),this.player.y,5); 
        // console.log(this.projectile);
       }
       
@@ -131,7 +134,11 @@ Game.prototype.startLoop = function() {
         
     this.checkProjectileCollisions();
   }
-    
+   // check if pleyer wins
+
+   this.Playerwins();
+
+  // draw the enemies
     
     this.enemies.forEach(function(enemy) {
       
@@ -205,6 +212,7 @@ Game.prototype.checkProjectileCollisions = function() {
 
           enemy.live = 0;
           
+          this.score += 25;
 
           /*
           if (this.player.lives === 0) {
@@ -214,6 +222,7 @@ Game.prototype.checkProjectileCollisions = function() {
 
           
       }
+      
     }
   }, this);
   // We have to pass `this` value as the second argument
@@ -223,20 +232,43 @@ Game.prototype.checkProjectileCollisions = function() {
 // aliens landing
 
 Game.prototype.Alienlanded = function () {
-  
-    if ( this.enemies[0].y >= this.player.y ){
-      this.gameOver();
-    }
+  var playerY = this.player.y ;
+  var finish= false;
+  this.enemies.forEach(function(enemy) {
 
+    if (( enemy.y >= playerY ) && (enemy.live === 0)) {
+      finish=true;
+    }
+  });
+ if(finish) this.gameOver();
 }
 
+// player kills all aliens
+
+Game.prototype.Playerwins = function () {
+  var victory = 0;
+
+  this.enemies.forEach(function(enemy) {
+      
+   victory=victory+enemy.live;
+  
+  });
+
+  if (victory===0) { 
+    this.playervictory= true;
+    this.gameOver();
+    
+  }
+  
+
+}
 
 
 
 // gameOver()
 
 Game.prototype.updateGameStats = function() {
-  this.score += 1;
+  //this.score += 1;
   this.livesElement.innerHTML = this.player.lives;
   this.scoreElement.innerHTML = this.score;
 };
@@ -250,7 +282,7 @@ Game.prototype.passGameOverCallback = function(gameOver) {
 Game.prototype.gameOver = function() {
   // flag `gameIsOver = true` stops the loop
   this.gameIsOver = true;
-  console.log('GAME OVER');
+  //console.log('GAME OVER');
   
   // Call the gameOver function from `main` to show the Game Over Screen
   this.onGameOverCallback();

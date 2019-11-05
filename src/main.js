@@ -21,6 +21,7 @@ function main() {
 
   // -- splash screen
   function createSplashScreen() {
+    
     splashScreen = buildDom(`
      <main>
       <h1>Space Invaders project</h1>
@@ -70,15 +71,28 @@ function main() {
  
   // setiing game over screen
 
-  function createGameOverScreen(score) {
+  function createGameOverScreen(score,victory) {
+    if (!victory){
     gameOverScreen = buildDom(`
     <main>
       <h1>Game over</h1>
       <p>Your score: <span></span></p>
       <button>Restart</button>
     </main>
-  `);
+  `);} else {
+    gameOverScreen = buildDom(`
+    <main>
+      <h1>YOU WIN</h1>
+      <h2>congratulations</h2>
+      <p>Your score: <span></span></p>
+      <button>Restart</button>
+    </main>`);} 
 
+  
+
+
+
+     // console.log("player victory"+victory);
     var button = gameOverScreen.querySelector('button');
     button.addEventListener('click', startGame);
 
@@ -108,15 +122,15 @@ function main() {
     game.start();
     // End the game
     game.passGameOverCallback( function() {		// <-- UPDATE
-      gameOver(game.score);					// <-- UPDATE
+      gameOver(game.score, game.playervictory);					// <-- UPDATE
     });
   }
 
   // main.js		gameOver()
 
-  function gameOver(score) {
+  function gameOver(score,victory) {
     removeGameScreen();
-    createGameOverScreen(score);
+    createGameOverScreen(score,victory);
   }
   
   // removeGameScreen() - inside main()
