@@ -45,12 +45,6 @@ Game.prototype.start = function() {
       
     }
 
-    /*if ( this.Alienprojectile===null) {  
-      var randomalienindex = Math.floor(Math.random()*this.enemies.length);
-       
-      this.Alienprojectile= new Projectile(this.canvas,this.enemies[randomalienindex].x,this.enemies[randomalienindex].y,-5);
-      
-    }*/
 
 
   // Add event listener for keydown movements
@@ -301,13 +295,16 @@ Game.prototype.checkAlienProjectileCollisions = function() {
 // aliens landing
 
 Game.prototype.Alienlanded = function () {
-  var playerY = this.player.y ;
+  var playerY = this.player ;
   var finish= false;
   this.enemies.forEach(function(enemy) {
 
+    finish= playerY.didCollide(enemy);
+    
+    /*
     if (( enemy.y >= playerY ) && (enemy.live === 0)) {
       finish=true;
-    }
+    }*/
   });
  if(finish) this.gameOver();
 }

@@ -37,7 +37,55 @@ Player.prototype.removeLife = function() {
 };
 
 Player.prototype.draw = function() {
+
+  var img2= new Image();
+  img2.src="../images/spaceship.png";
+
+  this.ctx.drawImage(img2, this.x, this.y, this.size, this.size);
+
+  /*
   this.ctx.fillStyle = '#66D3FA';
   // fillRect(x, y, width, height)
-  this.ctx.fillRect(this.x, this.y, this.size, this.size);
+  this.ctx.fillRect(this.x, this.y, this.size, this.size);*/
+};
+
+Player.prototype.didCollide = function(enemy) {
+  var projectileLeft = this.x;
+  var projectileRight = this.x + this.size;
+  var projectileTop = this.y;
+  var projectileBottom = this.y + this.size;
+
+
+  var enemyLeft = enemy.x;
+  var enemyRight = enemy.x + enemy.size;
+  var enemyTop = enemy.y;
+  var enemyBottom = enemy.y + enemy.size;
+  
+  if( !enemy) console.log(enemy);
+    //  if( this.y<enemy.y){ console.log("enemigo rebasado");};
+
+  // Check if the enemy intersects any of the player's sides
+  var crossLeft = enemyLeft <= projectileRight && enemyLeft >= projectileLeft;
+  //if(crossLeft) console.log ("crossleft");
+    
+  var crossRight = enemyRight >= projectileLeft && enemyRight <= projectileRight;
+  //if(crossRight) console.log ("crossRight");
+
+  var crossBottom = enemyBottom >= projectileTop && enemyBottom <= projectileBottom;
+  //if(crossBottom) console.log ("crossBottom");
+
+  var crossTop = enemyTop <= projectileBottom && enemyTop >= projectileTop;
+  //if(crossTop) console.log ("ccrossTop");
+
+  var inside=( (projectileBottom<= enemyBottom) && (projectileTop>=enemyTop )) && (( projectileLeft>=enemyLeft)&&(projectileRight<= enemyRight));
+
+  if (
+      inside || 
+      ( ( crossLeft || crossRight) && (crossTop || crossBottom) )
+    ) {
+    return true;
+  }
+
+
+  return false;
 };
