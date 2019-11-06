@@ -2,8 +2,36 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+  background-color: black;
 }
 
+body { 
+  background: url("../images/fondostart.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+
+.opening{
+  /*
+  background: url("../images/fondostart.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;*/
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  
+  justify-content:center;
+}
+
+.openingcontent{
+  margin-top: 50px;
+}
 
 .game {
   margin-top:10px;
@@ -12,6 +40,10 @@ html, body {
   justify-content:center;
   height: 100%;
   width: 100%;
+  background: url("../images/fondobatalla.png") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
 }
 
 .lives { margin-right: 50px;}

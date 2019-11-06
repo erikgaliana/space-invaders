@@ -23,9 +23,13 @@ function main() {
   function createSplashScreen() {
     
     splashScreen = buildDom(`
-     <main>
-      <h1>Space Invaders project</h1>
+     <main class="opening">
+     <div class="openingcontent">
+     <img src="../images/logo.png"  alt="SPACE INVADERS" width="400" height="auto">
+      <h1>Project</h1>
+      <h2>Invasion incoming</h2>
       <button>Start Game</button>
+      </div>
      </main>
     `);
 
@@ -47,16 +51,6 @@ function main() {
     gameScreen = buildDom(`
       <main class="game">
       <header>
-      
-        <div class="lives">
-          <span class="label">Lives:</span>
-          <span class="value"></span>
-        </div>
-        <div class="score">
-          <span class="label">Score:</span>
-          <span class="value"></span>
-        </div>
-      </header>
         
         <section class="canvas-container">
           <canvas></canvas>
@@ -75,19 +69,24 @@ function main() {
   function createGameOverScreen(score,victory) {
     if (!victory){
     gameOverScreen = buildDom(`
-    <main>
+    <main class="opening">
+    <div class="openingcontent">
       <h1>Game over</h1>
       <p>Your score: <span></span></p>
       <button>Restart</button>
-    </main>
+      </div>
+      </main>
   `);} else {
     gameOverScreen = buildDom(`
-    <main>
+    <main class="opening">
+    <div class="openingcontent">
       <h1>YOU WIN</h1>
       <h2>congratulations</h2>
       <p>Your score: <span></span></p>
       <button>Restart</button>
-    </main>`);} 
+      </div>
+      </main>
+      `);} 
 
   
 

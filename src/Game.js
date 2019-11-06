@@ -18,6 +18,8 @@ Game.prototype.start = function() {
   this.canvasContainer = document.querySelector('.canvas-container');
   this.canvas = document.querySelector('canvas');
   this.ctx = this.canvas.getContext('2d');
+  
+
 
   // Save reference to the score and lives elements
   this.livesElement = this.gameScreen.querySelector('.lives .value');
@@ -178,9 +180,9 @@ Game.prototype.startLoop = function() {
       if(enemy.live===1) {enemy.draw();}
     });
     
-    // draw scores 
+    // draw scores &lifes
     this.ctx.fillStyle = "orange";
-    this.ctx.font = "30px Arial";
+    this.ctx.font = "20px 'Press Start 2P'";
    
     this.ctx.fillText("Lives : "+this.player.lives, 50, 50);
     this.ctx.fillText("Score : "+this.score, 350, 50);
