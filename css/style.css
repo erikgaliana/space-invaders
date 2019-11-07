@@ -8,7 +8,7 @@ html, body {
 }
 
 body { 
-  background: url("../images/fondostart.jpg") no-repeat center center fixed;
+  background: url("./../images/fondostart.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   overflow: hidden;
@@ -33,7 +33,7 @@ body {
   justify-content:center;
   height: 100%;
   width: 100%;
-  background: url("../images/fondobatalla.png") no-repeat center center fixed;
+  background: url("./../images/fondobatalla.png") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   overflow: hidden;

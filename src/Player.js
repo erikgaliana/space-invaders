@@ -9,6 +9,9 @@ function Player(canvas,lives) {
 
   this.direction = 0;
   this.speed = 3; // before was 5
+
+  this.playerImg = new Image();
+  this.playerImg.src="./images/spaceship.png";
 }
 
 // setDirection()
@@ -38,10 +41,7 @@ Player.prototype.removeLife = function() {
 
 Player.prototype.draw = function() {
 
-  var img2= new Image();
-  img2.src="../images/spaceship.png";
-
-  this.ctx.drawImage(img2, this.x, this.y, this.size, this.size);
+  this.ctx.drawImage(this.playerImg, this.x, this.y, this.size, this.size);
 
   /*
   this.ctx.fillStyle = '#66D3FA';

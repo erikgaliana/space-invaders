@@ -9,6 +9,9 @@ function Enemy(canvas,x,y, speed,lives) {
   this.speed = speed;
   this.direction = 1;
   this.live=lives;
+
+  this.enemyImg= new Image();
+  this.enemyImg.src="./images/alien1.png";
 }
 
 
@@ -16,10 +19,7 @@ function Enemy(canvas,x,y, speed,lives) {
 
 Enemy.prototype.draw = function() {
 
-  var img= new Image();
-  img.src="../images/alien1.png"
-
-  this.ctx.drawImage(img, this.x, this.y, this.size, this.size);
+  this.ctx.drawImage(this.enemyImg, this.x, this.y, this.size, this.size);
     /*
     this.ctx.fillStyle = '#FF6F27';
     // fillRect(x, y, width, height)

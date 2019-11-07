@@ -11,6 +11,17 @@ function Game() {
   this.gameScreen = null;
   this.score = 0;
   //this.mySound = new Audio("../sounds/invaderkilled.wav");
+  this.playerShootsSound = new Audio("./sounds/invaderkilled.wav");
+  this.alienMovesSound = new Audio("./sounds/fastinvader1.wav");
+  this.alienExplosionSound = new Audio("./sounds/explosion.wav");
+  this.playerExplosionSound = new Audio("./sounds/explosion.wav");
+  this.playerexploImg = new Image();
+  this.playerexploImg.src = "./images/explosion.png";
+
+  this.alienExplosionImg = new Image();
+  this.alienExplosionImg.src="./images/explosion.png";
+
+
 }
 
 Game.prototype.start = function() {
@@ -73,11 +84,9 @@ Game.prototype.start = function() {
        // console.log('createsprojecrtile');
         this.projectile= new Projectile(this.canvas,(this.player.x+(this.player.size/2)),this.player.y,3); 
        // console.log(this.projectile);
-
-       PlayerShootsSound = new Audio("../sounds/invaderkilled.wav");
           
-       PlayerShootsSound.volume = 0.2;
-       PlayerShootsSound.play();
+       this.playerShootsSound.volume = 0.2;
+       this.playerShootsSound.play();
       }
       
     }
@@ -238,12 +247,10 @@ Game.prototype.checkEnemiesScreenCollision = function(){
       enemy.direction*=-1;
       enemy.y = enemy.y+30;
       
-      AlienMovesSound = new Audio("../sounds/fastinvader1.wav");
-          
-      AlienMovesSound.volume = 0.2;
-      AlienMovesSound.play();
+      this.alienMovesSound.volume = 0.2;
+      this.alienMovesSound.play();
       
-      });
+      }, this);
   }
 }
 
@@ -262,15 +269,11 @@ Game.prototype.checkProjectileCollisions = function() {
       
           //Move the enemy off screen to the left
 
-          var img= new Image();
-          img.src="../images/explosion.png";
 
-          this.ctx.drawImage(img, enemy.x, enemy.y, enemy.size, enemy.size);
-          
-          AlienExplosionSound = new Audio("../sounds/explosion.wav");
-          
-          AlienExplosionSound.volume = 0.2;
-          AlienExplosionSound.play();
+          this.ctx.drawImage(this.alienExplosionImg, enemy.x, enemy.y, enemy.size, enemy.size);
+                    
+          this.alienExplosionSound.volume = 0.2;
+          this.alienExplosionSound.play();
 
           this.projectile.y =  -100;//0 - this.projectile.size;
           
@@ -307,15 +310,10 @@ Game.prototype.checkAlienProjectileCollisions = function() {
           //Move the enemy off screen to the left
           this.Alienprojectile.y = 1000;  //780 + this.Alienprojectile.size;
 
-          var playerexplo= new Image();
-          playerexplo.src="../images/explosion.png";
-
-          this.ctx.drawImage(playerexplo, this.player.x, this.player.y, this.player.size, this.player.size);
-
-          PlayerExplosionSound = new Audio("../sounds/explosion.wav");
+          this.ctx.drawImage(this.playerexploImg, this.player.x, this.player.y, this.player.size, this.player.size);
           
-          PlayerExplosionSound.volume = 0.3;
-          PlayerExplosionSound.play();
+          this.playerExplosionSound.volume = 0.3;
+          this.playerExplosionSound.play();
 
       if (this.player.lives === 0) {
           this.gameOver();
