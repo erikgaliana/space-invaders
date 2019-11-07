@@ -10,7 +10,7 @@ function Game() {
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
- 
+  //this.mySound = new Audio("../sounds/invaderkilled.wav");
 }
 
 Game.prototype.start = function() {
@@ -73,6 +73,11 @@ Game.prototype.start = function() {
        // console.log('createsprojecrtile');
         this.projectile= new Projectile(this.canvas,(this.player.x+(this.player.size/2)),this.player.y,3); 
        // console.log(this.projectile);
+
+       PlayerShootsSound = new Audio("../sounds/invaderkilled.wav");
+          
+       PlayerShootsSound.volume = 0.2;
+       PlayerShootsSound.play();
       }
       
     }
@@ -233,6 +238,10 @@ Game.prototype.checkEnemiesScreenCollision = function(){
       enemy.direction*=-1;
       enemy.y = enemy.y+30;
       
+      AlienMovesSound = new Audio("../sounds/fastinvader1.wav");
+          
+      AlienMovesSound.volume = 0.2;
+      AlienMovesSound.play();
       
       });
   }
@@ -258,13 +267,14 @@ Game.prototype.checkProjectileCollisions = function() {
 
           this.ctx.drawImage(img, enemy.x, enemy.y, enemy.size, enemy.size);
           
-          mySound = new sound("../sounds/invaderkilled.wav");
-
-          mySound.play();
+          AlienExplosionSound = new Audio("../sounds/explosion.wav");
           
+          AlienExplosionSound.volume = 0.2;
+          AlienExplosionSound.play();
+
           this.projectile.y =  -100;//0 - this.projectile.size;
           
-          setTimeout((enemy.live = 0),2000);
+          enemy.live = 0;
           
           this.score = this.score + (25*this.player.lives)+ (800-enemy.y);
 
@@ -301,6 +311,11 @@ Game.prototype.checkAlienProjectileCollisions = function() {
           playerexplo.src="../images/explosion.png";
 
           this.ctx.drawImage(playerexplo, this.player.x, this.player.y, this.player.size, this.player.size);
+
+          PlayerExplosionSound = new Audio("../sounds/explosion.wav");
+          
+          PlayerExplosionSound.volume = 0.3;
+          PlayerExplosionSound.play();
 
       if (this.player.lives === 0) {
           this.gameOver();
@@ -363,6 +378,11 @@ Game.prototype.Playerwins = function () {
       if (this.enemies[randomalienindex].live===1 ) {
         this.Alienprojectile= new Projectile(this.canvas,this.enemies[randomalienindex].x+22,this.enemies[randomalienindex].y+45,-3);
       }
+
+      AlienProjecilesSound = new Audio("../sounds/shoot.wav");
+          
+      AlienProjecilesSound.volume = 0.1;
+      AlienProjecilesSound.play();
     }
   }
 
