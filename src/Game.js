@@ -58,9 +58,9 @@ Game.prototype.start = function() {
       
     }*/
     
-    for (var i=1; i<4; i++){
+    for (var i=1; i<5; i++){
       for ( var j=0; j<6; j++ ){
-      var newEnemy = new Enemy(this.canvas, 75*j, 75*i, 1,1);
+      var newEnemy = new Enemy(this.canvas, 75*j, 75*i, 1,1,i);
       this.enemies.push(newEnemy);
       }
     }
