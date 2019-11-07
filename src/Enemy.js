@@ -11,7 +11,7 @@ function Enemy(canvas,x,y, speed,lives) {
   this.live=lives;
 
   this.enemyImg= new Image();
-  this.enemyImg.src="./images/alien1.png";
+  this.enemyImg.src="./images/alien2.png";
 }
 
 

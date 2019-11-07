@@ -5,23 +5,21 @@
 function Projectile(canvas,x,y,speed) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.size = 10;
+    this.size = 15;
     this.x =  x;//(canvas.width/2) + this.size;
     this.y = y;
     this.speed = speed;
     this.direction = 1;
+    this.alienprojectileImg= new Image();
+    this.alienprojectileImg.src="./images/explosion.png";
+    this.playerprojectileImg= new Image();
+    this.playerprojectileImg.src="./images/alienblast.png";
   }
 
-// draw()
+
 
 Projectile.prototype.draw = function() {
-/*
-    var blast= new Image();
-    blast.src="../images/alienblast.png";
 
-    this.ctx.drawImage(blast, this.x, this.y, this.size, this.size);
-
-      */
 
     //console.log('draw func');
     this.ctx.fillStyle = 'white';

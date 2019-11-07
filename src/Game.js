@@ -3,18 +3,20 @@ function Game() {
   this.ctx = null;
   this.playervictory = false;
   this.enemies = [];
-  this.projectilesarr =[];
+  //this.projectilesarr =[];
   this.player = null;
   this.projectile = null;
   this.Alienprojectile = null;
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
-  //this.mySound = new Audio("../sounds/invaderkilled.wav");
-  this.playerShootsSound = new Audio("./sounds/invaderkilled.wav");
+  
+  this.playerShootsSound = new Audio("./sounds/shoot.wav");
   this.alienMovesSound = new Audio("./sounds/fastinvader1.wav");
-  this.alienExplosionSound = new Audio("./sounds/explosion.wav");
-  this.playerExplosionSound = new Audio("./sounds/explosion.wav");
+  this.alienExplosionSound = new Audio("./sounds/alienexplosion.wav");
+  this.playerExplosionSound = new Audio("./sounds/playerhit.wav");
+  this.alienProjectilesSound = new Audio("./sounds/0.wav");
+
   this.playerexploImg = new Image();
   this.playerexploImg.src = "./images/explosion.png";
 
@@ -157,15 +159,17 @@ Game.prototype.startLoop = function() {
     if ( this.projectile!=null) {
        
         this.projectile.updatePosition ();
-        this.projectile.draw();
-         
+        //this.projectile.draw();
+        //this.ctx.drawImage(this.alienExplosionImg, enemy.x, enemy.y, enemy.size, enemy.size);
+        this.projectile.ctx.drawImage(this.projectile.playerprojectileImg, this.projectile.x, this.projectile.y, this.projectile.size, this.projectile.size);
       };
 
     if ( this.Alienprojectile!=null) {
      
        this.Alienprojectile.updatePosition ();
-       this.Alienprojectile.draw();
-        
+       //this.Alienprojectile.draw();
+       this.Alienprojectile.ctx.drawImage(this.Alienprojectile.alienprojectileImg, this.Alienprojectile.x, this.Alienprojectile.y, this.Alienprojectile.size, this.Alienprojectile.size);
+      
       };
 
 // 3. UPDATE THE CANVAS
@@ -377,10 +381,10 @@ Game.prototype.Playerwins = function () {
         this.Alienprojectile= new Projectile(this.canvas,this.enemies[randomalienindex].x+22,this.enemies[randomalienindex].y+45,-3);
       }
 
-      AlienProjecilesSound = new Audio("../sounds/shoot.wav");
+      
           
-      AlienProjecilesSound.volume = 0.1;
-      AlienProjecilesSound.play();
+      this.alienProjectilesSound.volume = 0.1;
+      this.alienProjectilesSound.play();
     }
   }
 

@@ -25,7 +25,7 @@ function main() {
     splashScreen = buildDom(`
      <main class="opening">
      <div class="openingcontent">
-     <img src="../images/logo.png"  alt="SPACE INVADERS" width="400" height="auto">
+     <img src="./../images/logo.png"  alt="SPACE INVADERS" width="400" height="auto">
       <h1>Project</h1>
       <h2>Invasion incoming</h2>
       <button>Start Game</button>
