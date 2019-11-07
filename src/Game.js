@@ -39,12 +39,21 @@ Game.prototype.start = function() {
   this.player = new Player(this.canvas,3);
   
   // creates enemies
-    for (var i=0; i<5; i++){
+   /* for (var i=0; i<5; i++){
       var newEnemy = new Enemy(this.canvas, 75*i, 100, 1,1);
       this.enemies.push(newEnemy);
       
+    }*/
+    
+    for (var i=1; i<4; i++){
+      for ( var j=0; j<6; j++ ){
+      var newEnemy = new Enemy(this.canvas, 75*j, 75*i, 1,1);
+      this.enemies.push(newEnemy);
+      }
     }
 
+      
+    
 
 
   // Add event listener for keydown movements
@@ -178,7 +187,7 @@ Game.prototype.startLoop = function() {
     this.ctx.fillStyle = "orange";
     this.ctx.font = "20px 'Press Start 2P'";
    
-    this.ctx.fillText("Lives : "+this.player.lives, 50, 50);
+    this.ctx.fillText("Lives : "+this.player.lives, 40, 50);
     this.ctx.fillText("Score : "+this.score, 350, 50);
 
 // 4. TERMINATE LOOP IF GAME IS OVER
@@ -189,8 +198,7 @@ Game.prototype.startLoop = function() {
       window.requestAnimationFrame(loop)
     }
     
-    //update game stats
-    this.updateGameStats();	
+    
    // window.requestAnimationFrame(loop);
   }.bind(this);
 
@@ -244,9 +252,19 @@ Game.prototype.checkProjectileCollisions = function() {
           //console.log('lives', this.player.lives);
       
           //Move the enemy off screen to the left
-          this.projectile.y =  -100;//0 - this.projectile.size;
 
-          enemy.live = 0;
+          var img= new Image();
+          img.src="../images/explosion.png";
+
+          this.ctx.drawImage(img, enemy.x, enemy.y, enemy.size, enemy.size);
+          /*
+          mySound = new sound("../sounds/invaderkilled.wav");
+
+          mySound.play();*/
+          
+          this.projectile.y =  -100;//0 - this.projectile.size;
+          
+          setTimeout((enemy.live = 0),2000);
           
           this.score = this.score + (25*this.player.lives)+ (800-enemy.y);
 
@@ -295,16 +313,16 @@ Game.prototype.checkAlienProjectileCollisions = function() {
 // aliens landing
 
 Game.prototype.Alienlanded = function () {
-  var playerY = this.player ;
+  var playerY = this.player.y ;
   var finish= false;
   this.enemies.forEach(function(enemy) {
-
-    finish= playerY.didCollide(enemy);
+      /*if ( enemy.live===1){
+          finish= playerY.didCollide(enemy);
+      }*/
     
-    /*
-    if (( enemy.y >= playerY ) && (enemy.live === 0)) {
+    if (( enemy.y >= playerY ) && (enemy.live === 1)) {
       finish=true;
-    }*/
+    }
   });
  if(finish) this.gameOver();
 }
@@ -344,11 +362,7 @@ Game.prototype.Playerwins = function () {
 
 // gameOver()
 
-Game.prototype.updateGameStats = function() {
-  
-  this.livesElement.innerHTML = this.player.lives;
-  this.scoreElement.innerHTML = this.score;
-};
+
 
 Game.prototype.passGameOverCallback = function(gameOver) {
   this.onGameOverCallback = gameOver;

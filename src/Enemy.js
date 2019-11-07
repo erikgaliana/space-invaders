@@ -44,4 +44,5 @@ Enemy.prototype.isInsideScreen = function() {
     return this.y + this.size / 2 > 0;
   };
 
+  
  

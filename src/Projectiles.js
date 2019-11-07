@@ -15,6 +15,14 @@ function Projectile(canvas,x,y,speed) {
 // draw()
 
 Projectile.prototype.draw = function() {
+/*
+    var blast= new Image();
+    blast.src="../images/alienblast.png";
+
+    this.ctx.drawImage(blast, this.x, this.y, this.size, this.size);
+
+      */
+
     //console.log('draw func');
     this.ctx.fillStyle = 'white';
     // fillRect(x, y, width, height)
