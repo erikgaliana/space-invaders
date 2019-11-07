@@ -257,10 +257,10 @@ Game.prototype.checkProjectileCollisions = function() {
           img.src="../images/explosion.png";
 
           this.ctx.drawImage(img, enemy.x, enemy.y, enemy.size, enemy.size);
-          /*
+          
           mySound = new sound("../sounds/invaderkilled.wav");
 
-          mySound.play();*/
+          mySound.play();
           
           this.projectile.y =  -100;//0 - this.projectile.size;
           
@@ -292,9 +292,15 @@ Game.prototype.checkAlienProjectileCollisions = function() {
 
           this.player.removeLife();
           console.log('lives', this.player.lives);
+
       
           //Move the enemy off screen to the left
           this.Alienprojectile.y = 1000;  //780 + this.Alienprojectile.size;
+
+          var playerexplo= new Image();
+          playerexplo.src="../images/explosion.png";
+
+          this.ctx.drawImage(playerexplo, this.player.x, this.player.y, this.player.size, this.player.size);
 
       if (this.player.lives === 0) {
           this.gameOver();
