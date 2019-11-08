@@ -10,6 +10,7 @@ function Game() {
   this.gameIsOver = false;
   this.gameScreen = null;
   this.score = 0;
+  this.GameLEvel=5;
   
   this.playerShootsSound = new Audio("./sounds/shoot.wav");
   this.alienMovesSound = new Audio("./sounds/fastinvader1.wav");
@@ -58,7 +59,8 @@ Game.prototype.start = function() {
       
     }*/
     
-    for (var i=1; i<5; i++){
+    
+    for (var i=1; i<this.GameLEvel; i++){
       for ( var j=0; j<6; j++ ){
       var newEnemy = new Enemy(this.canvas, 75*j, 75*i, 1,1,i);
       this.enemies.push(newEnemy);

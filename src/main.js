@@ -15,28 +15,39 @@ function main() {
   var splashScreen; // Start Screen
   var gameScreen;
   var gameOverScreen;
-
+  var resultlevel =4;
     
   
 
   // -- splash screen
   function createSplashScreen() {
-    
+    removeGameOverScreen() ;
     splashScreen = buildDom(`
      <main class="opening">
      <div class="openingcontent">
-     <img src="./../images/logo.png"  alt="SPACE INVADERS" width="400" height="auto">
+     <img src="./images/logo.png"  alt="SPACE INVADERS" width="400" height="auto">
       <h1>Project</h1>
-      <h2>Invasion incoming</h2>
+      <h3>Prepare for Invasion</h3>
+      <select id="mySelect">
+      <option value="1">1 Aliens Rows</option>
+      <option value="2">2 Aliens Rows</option>
+      <option value="3">3 Aliens Rows</option>
+      <option value="4">4 Aliens Rows</option>
+    </select> 
       <button>Start Game</button>
       </div>
      </main>
     `);
 
     document.body.appendChild(splashScreen);
-
+    
+    var level = document.getElementById("mySelect");
+    
     var startButton = splashScreen.querySelector('button');
     startButton.addEventListener('click', function() {
+      
+          resultlevel = Number(level.options[level.selectedIndex].value)+1;
+       
           startGame();
       });
   }
@@ -48,6 +59,7 @@ function main() {
   // -- game screen
 
   function createGameScreen() {
+    
     gameScreen = buildDom(`
       <main class="game">
       <header>
@@ -67,6 +79,7 @@ function main() {
   // setiing game over screen
 
   function createGameOverScreen(score,victory) {
+    
     if (!victory){
     gameOverScreen = buildDom(`
     <main class="opening">
@@ -76,7 +89,8 @@ function main() {
       <button>Restart</button>
       </div>
       </main>
-  `);} else {
+  `);} 
+  else {
     gameOverScreen = buildDom(`
     <main class="opening">
     <div class="openingcontent">
@@ -86,20 +100,20 @@ function main() {
       <button>Restart</button>
       </div>
       </main>
-      `);} 
+      `);
+      
+  } 
 
-  
-
-
-
-     // console.log("player victory"+victory);
+    
     var button = gameOverScreen.querySelector('button');
-    button.addEventListener('click', startGame);
+    button.addEventListener('click', restartgame);
+    
 
     var span = gameOverScreen.querySelector('span');
     span.innerText = score;
 
     document.body.appendChild(gameOverScreen);
+    
   }
 
   function removeGameOverScreen() {
@@ -108,7 +122,10 @@ function main() {
       }
   }
 
-
+  function restartgame (){
+    removeGameOverScreen();
+    createSplashScreen();
+  }
 
   // -- Setting the game state 
 
@@ -118,7 +135,7 @@ function main() {
 
     var game = new Game();
     game.gameScreen = createGameScreen();
-
+    game.GameLEvel= resultlevel;
     game.start();
     // End the game
     game.passGameOverCallback( function() {		// <-- UPDATE

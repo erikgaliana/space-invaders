@@ -5,7 +5,7 @@ function Enemy(canvas,x,y, speed,lives,kindaliens) {
   this.ctx = canvas.getContext('2d');
   this.size = 45;
   this.x =  x;//(canvas.width/2) + this.size;
-  this.y = 40+y;
+  this.y = 20+y;
   this.speed = speed;
   this.direction = 1;
   this.live=lives;
