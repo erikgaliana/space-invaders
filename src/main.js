@@ -29,10 +29,10 @@ function main() {
       <h1>Project</h1>
       <h3>Prepare for Invasion</h3>
       <select id="mySelect">
-      <option value="1">1 Aliens Rows</option>
-      <option value="2">2 Aliens Rows</option>
-      <option value="3">3 Aliens Rows</option>
-      <option value="4">4 Aliens Rows</option>
+      <option value="1">1 Row of Aliens</option>
+      <option value="2">2 Rows of Aliens</option>
+      <option value="3">3 Rows of Aliens</option>
+      <option value="4">4 Rows of Aliens</option>
     </select> 
       <button>Start Game</button>
       </div>
@@ -84,7 +84,7 @@ function main() {
     gameOverScreen = buildDom(`
     <main class="opening">
     <div class="openingcontent">
-      <h1>Game over</h1>
+      <h1 class="gameover">Game over</h1>
       <p>Your score: <span></span></p>
       <button>Restart</button>
       </div>
@@ -94,7 +94,7 @@ function main() {
     gameOverScreen = buildDom(`
     <main class="opening">
     <div class="openingcontent">
-      <h1>YOU WIN</h1>
+      <h1 class="gameover">YOU WIN</h1>
       <h2>congratulations</h2>
       <p>Your score: <span></span></p>
       <button>Restart</button>

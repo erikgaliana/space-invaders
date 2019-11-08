@@ -23,7 +23,26 @@ body {
 }
 
 .openingcontent{
-  margin-top: 50px;
+  margin-top: 20px;
+}
+
+button {
+  background-color: grey; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Press Start 2P', cursive;
+  border-radius: 4px;
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  background-color: red; /* Green */
+  color: white;
 }
 
 .game {
@@ -52,3 +71,32 @@ body {
   background: black;
   border: 1px solid red;
 }
+
+
+/* styling the list 
+
+ /* The container must be positioned relative: */
+ select {
+  background-color: grey; /* Green */
+  color: white;
+  padding: 15px 15px;
+  width: 250px;
+  height: 50px;
+  border: none;
+  font-size: 13px;
+  font-family: 'Press Start 2P', cursive;
+  text-align:center;
+  
+  text-decoration: none;
+  /*display: inline-block;*/
+  
+  border-radius: 4px;
+  /*-webkit-appearance: button;*/
+  outline: none;
+}
+
+.gameover{
+  font-size: 75px;
+}
+
+select:focus{ outline: none;}
