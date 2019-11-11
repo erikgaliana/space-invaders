@@ -1,6 +1,8 @@
 'use strict';
 
-function Enemy(canvas,x,y, speed,lives,kindaliens) {
+class Enemy {
+
+ constructor (canvas,x,y, speed,lives,kindaliens) {
   this.canvas = canvas;
   this.ctx = canvas.getContext('2d');
   this.size = 45;
@@ -21,53 +23,54 @@ function Enemy(canvas,x,y, speed,lives,kindaliens) {
 }
 
 
-// draw()
-
-Enemy.prototype.draw = function() {
-  var selectedimg;
-  switch (this.kindalien) {
-    case 1:
-      selectedimg=this.enemyImg4;
-      break;
-    case 2:
-      selectedimg=this.enemyImg3;
-      break;
-    case 3:
-      selectedimg=this.enemyImg2;
-      break;
-    case 4:
-      selectedimg=this.enemyImg1;
-      break;
+  draw () {
+    var selectedimg;
+    
+    switch (this.kindalien) {
+     case 1:
+        selectedimg=this.enemyImg4;
+        break;
+      case 2:
+        selectedimg=this.enemyImg3;
+        break;
+      case 3:
+       selectedimg=this.enemyImg2;
+       break;
+     case 4:
+        selectedimg=this.enemyImg1;
+        break;
    
-    default:
-      selectedimg=this.enemyImg1;
-      break;
-  }
+     default:
+       selectedimg=this.enemyImg1;
+       break;
+    }
 
-  this.ctx.drawImage(selectedimg, this.x, this.y, this.size, this.size);
-    /*
-    this.ctx.fillStyle = '#FF6F27';
-    // fillRect(x, y, width, height)
-    this.ctx.fillRect(
-      this.x,
-      this.y,
-      this.size,
-      this.size,
-    );*/
-  };
+    this.ctx.drawImage(selectedimg, this.x, this.y, this.size, this.size);
+  
+   };
 
-// updatePosition()
-
-Enemy.prototype.updatePosition = function() {
+  updatePosition () {
     this.y = this.y + this.speed;
   };
 
-// isInsideScreen()
-
-Enemy.prototype.isInsideScreen = function() {
+  isInsideScreen () {
     // if x plus half of its size is smaller then 0 return
     return this.y + this.size / 2 > 0;
   };
+
+} // end of class
+
+
+// draw()
+
+
+// updatePosition()
+
+
+
+// isInsideScreen()
+
+
 
   
  

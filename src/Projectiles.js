@@ -1,8 +1,9 @@
 
 'use strict';
 
+class Projectile {
 
-function Projectile(canvas,x,y,speed) {
+ constructor (canvas,x,y,speed) {
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.size = 15;
@@ -15,31 +16,28 @@ function Projectile(canvas,x,y,speed) {
     this.playerprojectileImg= new Image();
     this.playerprojectileImg.src="./images/alienblast.png";
   }
+  
+  draw () {
 
 
-
-Projectile.prototype.draw = function() {
-
-
-    //console.log('draw func');
-    this.ctx.fillStyle = 'white';
-    // fillRect(x, y, width, height)
-    this.ctx.fillRect(
+      //console.log('draw func');
+      this.ctx.fillStyle = 'white';
+      // fillRect(x, y, width, height)
+      this.ctx.fillRect(
       this.x,
       this.y,
       this.size,
       this.size,
-    );
+      );
   };
 
-// updatePosition()
-
-Projectile.prototype.updatePosition = function() {
+  updatePosition () {
     this.y = this.y - this.speed;
   };
 
 
-Projectile.prototype.didCollide = function(enemy) {
+
+  didCollide (enemy) {
     var projectileLeft = this.x;
     var projectileRight = this.x + this.size;
     var projectileTop = this.y;
@@ -79,3 +77,12 @@ Projectile.prototype.didCollide = function(enemy) {
 
     return false;
   };
+
+} // end of class
+
+
+
+
+
+
+
