@@ -3,7 +3,7 @@
 
 ## Description
 
-Space invaders project consists in a javascript version of 80's famous ZX Spectrum's game. 
+Space invaders project consists in a javascript version of famous 80's arcade game. 
 
 Game screen displays a laser cannon which the player controls by moving it horizontally across the bottom of the screen and firing at descending aliens. The aim is to defeat a row of aliens while they advance toward the bottom of the screen. 
 
@@ -215,11 +215,10 @@ Task definition in order of priority
 
 
 ### Git
-URls for the project repo and deploy
-[Link Repo](http://github.com)
-[Link Deploy](http://github.com)
+
+[Link Deploy](https://erikgaliana.github.io/space-invaders/)
 
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
+[Link Slides.com](https://docs.google.com/presentation/d/1831IUdaGy_n7sWcznBENAP65qSTW7FH7K6IxLQMOq8U/edit#slide=id.gc6f59039d_0_0)
