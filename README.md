@@ -216,9 +216,9 @@ Task definition in order of priority
 
 ### Git
 
-[Link Deploy](https://erikgaliana.github.io/space-invaders/)
+[Link to Play](https://erikgaliana.github.io/space-invaders/)
 
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](https://docs.google.com/presentation/d/1831IUdaGy_n7sWcznBENAP65qSTW7FH7K6IxLQMOq8U/edit#slide=id.gc6f59039d_0_0)
+[Link to Slides](https://docs.google.com/presentation/d/1831IUdaGy_n7sWcznBENAP65qSTW7FH7K6IxLQMOq8U/edit#slide=id.gc6f59039d_0_0)
