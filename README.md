@@ -1,4 +1,4 @@
-# space-invaders Project
+# Space Invaders Project
 
 
 ## Description
